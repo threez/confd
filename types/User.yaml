@@ -1,0 +1,12 @@
+---
+"$schema": http://json-schema.org/draft-04/schema#
+description: User
+allOf:
+- "$ref": file://types/BasicObject.yaml#
+- type: object
+  properties:
+    _type:
+      type: string
+      default: User
+      enum:
+      - User

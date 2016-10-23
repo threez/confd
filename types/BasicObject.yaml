@@ -1,0 +1,49 @@
+---
+"$schema": http://json-schema.org/draft-04/schema#
+description: BasicObject
+type: object
+properties:
+  _id:
+    type: string
+  _type:
+    type: string
+  _rev:
+    type: string
+  _name:
+    type: string
+  _description:
+    type: string
+  _enabled:
+    type: boolean
+    default: true
+  _locked:
+    type: boolean
+    description: wether the object can be changed by a user
+  _created_at:
+    type: string
+    format: date-time
+  _created_by:
+    type: string
+    relation:
+      type: belongs_to
+      only:
+      - User
+  _updated_at:
+    type: string
+    format: date-time
+  _updated_by:
+    type: string
+    relation:
+      type: belongs_to
+      only:
+      - User
+required:
+- _id
+- _type
+- _rev
+- _name
+- _enabled
+- _created_at
+- _created_by
+- _updated_at
+- _updated_by

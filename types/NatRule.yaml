@@ -1,0 +1,37 @@
+---
+"$schema": http://json-schema.org/draft-04/schema#
+description: NatRule
+allOf:
+- "$ref": file://types/RuleWithInterfaceFilter.yaml#
+- "$ref": file://types/RuleWithAfFilter.yaml#
+- "$ref": file://types/RuleWithLoggingOption.yaml#
+- "$ref": file://types/RuleWithTrafficSelector.yaml#
+- "$ref": file://types/RuleWithPassOption.yaml#
+- "$ref": file://types/RuleWithTagFilter.yaml#
+- "$ref": file://types/RuleCanSetTag.yaml#
+- "$ref": file://types/RuleWithPoolOption.yaml#
+- type: object
+  properties:
+    no:
+      type: boolean
+      default: false
+    static_port:
+      type: boolean
+      default: false
+      description: |
+        With	nat rules, the static-port option prevents pf(4) from modify-
+        ing the source port on TCP and UDP packets.
+    redirhosts:
+      type: array
+      items:
+        type: string
+      relation:
+        type: has_and_belongs_to_many
+        only:
+        - NetIpv4Address
+    redirport:
+      type: string
+      relation:
+        type: belongs_to
+        only:
+        - NetPort

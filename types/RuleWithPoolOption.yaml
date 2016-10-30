@@ -1,0 +1,47 @@
+---
+"$schema": http://json-schema.org/draft-04/schema#
+description: RuleWithPoolOption
+type: object
+properties:
+  pool_type:
+    type: string
+    default: random
+    enum:
+      - bitmask
+      - random
+      - source-hash
+      - round-robin
+  source_hash:
+    type: string
+    # TODO: maxLength: 30
+  sticky_address:
+    type: boolean
+    description: |
+      The sticky-address option can be specified to help ensure
+      that multiple connections from the	same source are	mapped to the same
+      redirection address. This option can be used with the random and
+      round-robin pool options.	Note that by default these associations	are
+      destroyed as soon as there	are no longer states which refer to them; in
+      order to make the mappings	last beyond the	lifetime of the	states,
+      increase the global options with set timeout src.track.  See STATEFUL
+      TRACKING OPTIONS for more ways to control the source tracking.
+    default: false
+    help:
+      bitmask: |
+        The bitmask option applies the network portion of the redirection
+        address to the address to be	modified (source with nat, destination
+        with rdr).
+      random: |
+        The random option selects an	address	at random within the defined
+        block of addresses.
+      source-hash: |
+        The source-hash option uses a hash of the source address to deter-
+        mine	the redirection	address, ensuring that the redirection address
+        is always the same for a given source.  An optional key can be
+        specified after this	keyword	either in hex or as a string; by
+        default pfctl(8) randomly generates a key for source-hash every
+        time	the ruleset is reloaded.
+      round-robin: |
+        The round-robin option loops	through	the redirection	address(es).
+        When	more than one redirection address is specified,	round-robin is
+        the only permitted pool type.

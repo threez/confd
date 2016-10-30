@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "RuleWithLoggingOption",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "boolean",
+      "description": "enable logging (traffic will be send to log device)",
+      "default": false
+    }
+  }
+}

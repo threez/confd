@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "User",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_type": {
+          "type": "string",
+          "default": "User",
+          "enum": [
+            "User"
+          ]
+        }
+      }
+    }
+  ]
+}

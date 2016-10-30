@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "RuleWithTrafficSelector",
+  "type": "object",
+  "properties": {
+    "protocols": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "relation": {
+        "type": "has_and_belongs_to_many",
+        "only": [
+          "NetProtocol"
+        ]
+      }
+    },
+    "all": {
+      "type": "boolean",
+      "description": "if all is true specific sources and destinations don't matter",
+      "default": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "relation": {
+        "type": "has_and_belongs_to_many",
+        "only": [
+          "NetIpv4Address",
+          "NetIpv4BroadcastAddress",
+          "NetIpv4Network",
+          "NetGroup",
+          "NetDynamicGroup"
+        ]
+      }
+    },
+    "any_source": {
+      "type": "boolean",
+      "default": false
+    },
+    "source_ports": {
+      "relation": {
+        "type": "has_and_belongs_to_many",
+        "only": [
+          "NetPort"
+        ]
+      }
+    },
+    "any_source_port": {
+      "type": "boolean",
+      "default": true
+    },
+    "destinations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "relation": {
+        "type": "has_and_belongs_to_many",
+        "only": [
+          "NetIpv4Address",
+          "NetIpv4BroadcastAddress",
+          "NetIpv4Network",
+          "NetGroup",
+          "NetInterface"
+        ]
+      }
+    },
+    "any_destination": {
+      "type": "boolean",
+      "default": false
+    },
+    "destination_ports": {
+      "relation": {
+        "type": "has_and_belongs_to_many",
+        "only": [
+          "NetPort"
+        ]
+      }
+    },
+    "any_destination_port": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

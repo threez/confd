@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "RuleCanSetTag",
+  "type": "object",
+  "properties": {
+    "tag": {
+      "type": "string",
+      "description": "Tag the matching traffic with the passed tag"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NatRule",
+  "allOf": [
+    {
+      "$ref": "file:///types/RuleWithInterfaceFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithAfFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithLoggingOption.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithTrafficSelector.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithPassOption.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithTagFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleCanSetTag.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithPoolOption.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "false": {
+          "type": "boolean",
+          "default": false
+        },
+        "static_port": {
+          "type": "boolean",
+          "default": false,
+          "description": "With\tnat rules, the static-port option prevents pf(4) from modify-\ning the source port on TCP and UDP packets.\n"
+        },
+        "redirhosts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "has_and_belongs_to_many",
+            "only": [
+              "NetIpv4Address"
+            ]
+          }
+        },
+        "redirport": {
+          "type": "string",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "NetPort"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

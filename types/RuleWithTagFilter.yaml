@@ -1,8 +1,0 @@
----
-"$schema": http://json-schema.org/draft-04/schema#
-description: RuleWithTagFilter
-type: object
-properties:
-  tagged:
-    type: string
-    description: Match the traffic only if the passed tag matches

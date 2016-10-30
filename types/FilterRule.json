@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "RuleWithLoggingOption",
+  "allOf": [
+    {
+      "$ref": "file:///types/RuleWithInterfaceFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithAfFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithLoggingOption.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithTrafficSelector.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithTagFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleCanSetTag.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "accept",
+            "reject",
+            "drop"
+          ]
+        },
+        "silently_drop": {
+          "type": "boolean",
+          "description": "If it is a blocking rule the silently drop option will be used to\nselect the correct return mode (reject or drop)\n",
+          "default": true
+        },
+        "direction": {
+          "type": "string",
+          "description": "This rule applies to incoming or outgoing packets.  If neither in\nnor out are specified, the rule will match packets in both directions.\n",
+          "enum": [
+            "both",
+            "in",
+            "out"
+          ],
+          "default": "both"
+        },
+        "quick": {
+          "type": "boolean",
+          "description": "If a packet matches a rule which has the quick option set, this\nrule is considered the last matching rule, and evaluation of subse-\nquent rules is skipped.\n",
+          "default": false
+        },
+        "group": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Similar to user, this rule only applies to packets of sockets owned\nby the specified group.\n"
+        },
+        "user": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "This rule only applies to packets of sockets owned by the specified\nuser.  For outgoing connections initiated from the firewall, this\nis the user that opened the connection.  For incoming connections\nto the firewall itself, this is the user that listens on the desti-\nnation port.  For forwarded connections, where the firewall is not\na connection endpoint, the user and group are unknown.\n\nAll packets, both outgoing and incoming, of one connection are\nassociated with the same user and group.  Only TCP and UDP packets\ncan be associated with users; for other protocols these parameters\nare ignored.\n\nUser and group refer to the effective (as opposed to the real) IDs,\nin case the socket is created by a setuid/setgid process.  User and\ngroup IDs are stored when a socket is created; when a process cre-\nates a listening socket as root (for instance, by binding to a\nprivileged port) and subsequently changes to another user ID (to\ndrop privileges), the credentials will remain root.\n\nUser and group IDs can be specified as either numbers or names.\nThe syntax is similar to the one for ports. The value unknown\nmatches packets of forwarded connections.  unknown can only be used\nwith the operators = and !=.  Other constructs like user >= unknown\nare invalid.  Forwarded packets with unknown user and group ID\nmatch only rules that explicitly compare against unknown with the\noperators = or !=.  For instance user >= 0 does not match forwarded\npackets.  The following example allows only selected users to open\noutgoing connections:\n\nblock out proto { tcp, udp } all\npass  out proto { tcp, udp } all user { < 1000, dhartmei }\n"
+        },
+        "tos": {
+          "type": "string",
+          "description": "This rule applies to packets with the specified TOS bits set.  TOS\nmay be given as one of lowdelay, throughput, reliability, or as\neither hex or decimal.\n\nFor example, the following rules are identical:\n\npass all tos lowdelay\npass all tos 0x10\npass all tos 16\n"
+        },
+        "allow_opts": {
+          "type": "boolean",
+          "default": false,
+          "description": "By default, IPv4 packets with IP options or IPv6 packets with rout-\ning extension headers are blocked.  When allow-opts is specified\nfor a pass rule, packets that pass the filter based on that rule\n(last matching) do so even if they contain IP options or routing\nextension headers.  For packets that match state, the rule that\ninitially created the state is used.  The implicit pass rule that\nis used when a packet does not match any rules does not allow IP\noptions.\n"
+        },
+        "label": {
+          "type": "string",
+          "description": "Adds a label (name) to the rule, which can be used to identify the\nrule.  For instance, pfctl -s labels shows per-rule statistics for\nrules that have labels.\n"
+        },
+        "queue": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Packets matching this rule will be assigned to the specified queue.\nIf two queues are given, packets which have a TOS of lowdelay and\nTCP ACKs with no data payload will be assigned to the second one.\nSee QUEUEING for setup details.\n"
+        },
+        "probability": {
+          "type": "integer",
+          "default": -1,
+          "description": "A probability attribute can be attached to a rule, with a value set\nbetween 0 and 1, bounds not included.  In that case, the rule will\nbe honoured using the given probability value only.\n"
+        }
+      }
+    }
+  ]
+}

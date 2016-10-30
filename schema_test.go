@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"net/http"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -9,8 +12,16 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
+type Dir string
+
+func (d Dir) Open(name string) (http.File, error) {
+	path := filepath.Join(string(d), name)
+	fmt.Printf("Loading %s", path)
+	return os.Open(path)
+}
+
 func TestValidObjects(t *testing.T) {
-	files("test/valid/types/**/*.yaml", t, func(result *gojsonschema.Result) {
+	files("test/valid/types/**/*.json", t, func(result *gojsonschema.Result) {
 		if !result.Valid() {
 			t.Error("The document is not valid. see errors")
 			for _, desc := range result.Errors() {
@@ -22,7 +33,7 @@ func TestValidObjects(t *testing.T) {
 }
 
 func TestInvalidObjects(t *testing.T) {
-	files("test/invalid/types/**/*.yaml", t, func(result *gojsonschema.Result) {
+	files("test/invalid/types/**/*.json", t, func(result *gojsonschema.Result) {
 		if result.Valid() {
 			t.Error("The document is valid but should not!")
 			t.FailNow()
@@ -36,15 +47,16 @@ func files(path string, t *testing.T, r func(result *gojsonschema.Result)) {
 
 	for _, path := range paths {
 		parts := strings.Split(path, string(filepath.Separator))
-		schemaPath := filepath.Join("types", parts[3]+".yaml")
+		path := "file:///" + path
+		schemaPath := "file:///types/" + parts[3] + ".json"
 		t.Logf("Testing %s -> %s\n", path, schemaPath)
-		schemaLoader := NewYAMLFileLoader("file://" + schemaPath)
-		documentLoader := NewYAMLFileLoader("file://" + path)
+
+		schemaLoader := NewSimpleFileLoader(schemaPath)
+		documentLoader := NewSimpleFileLoader(path)
 
 		result, err := gojsonschema.Validate(schemaLoader, documentLoader)
-		if err != nil {
-			assert.NoError(t, err)
-		}
+		assert.NoError(t, err)
+
 		r(result)
 	}
 }

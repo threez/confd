@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "RuleWithInterfaceFilter",
+  "type": "object",
+  "properties": {
+    "interfaces": {
+      "type": "array",
+      "description": "filter only on specified interfaces, if nothing is set, no filter is active",
+      "items": {
+        "type": "string"
+      },
+      "relation": {
+        "type": "has_and_belongs_to_many",
+        "only": [
+          "NetInterface"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "RuleWithPoolOption",
+  "type": "object",
+  "properties": {
+    "pool_type": {
+      "type": "string",
+      "default": "random",
+      "enum": [
+        "bitmask",
+        "random",
+        "source-hash",
+        "round-robin"
+      ]
+    },
+    "source_hash": {
+      "type": "string"
+    },
+    "sticky_address": {
+      "type": "boolean",
+      "description": "The sticky-address option can be specified to help ensure\nthat multiple connections from the\tsame source are\tmapped to the same\nredirection address. This option can be used with the random and\nround-robin pool options.\tNote that by default these associations\tare\ndestroyed as soon as there\tare no longer states which refer to them; in\norder to make the mappings\tlast beyond the\tlifetime of the\tstates,\nincrease the global options with set timeout src.track.  See STATEFUL\nTRACKING OPTIONS for more ways to control the source tracking.\n",
+      "default": false,
+      "help": {
+        "bitmask": "The bitmask option applies the network portion of the redirection\naddress to the address to be\tmodified (source with nat, destination\nwith rdr).\n",
+        "random": "The random option selects an\taddress\tat random within the defined\nblock of addresses.\n",
+        "source-hash": "The source-hash option uses a hash of the source address to deter-\nmine\tthe redirection\taddress, ensuring that the redirection address\nis always the same for a given source.  An optional key can be\nspecified after this\tkeyword\teither in hex or as a string; by\ndefault pfctl(8) randomly generates a key for source-hash every\ntime\tthe ruleset is reloaded.\n",
+        "round-robin": "The round-robin option loops\tthrough\tthe redirection\taddress(es).\nWhen\tmore than one redirection address is specified,\tround-robin is\nthe only permitted pool type.\n"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "AntispoofRule",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithLoggingOption.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithInterfaceFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithAfFilter.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_type": {
+          "type": "string",
+          "default": "AntispoofRule",
+          "enum": [
+            "AntispoofRule"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "description": "Adds a label (name) to the rule, which can be used to identify the rule.\nFor instance, pfctl -s labels shows per-rule statistics for rules\nthat have labels.\n"
+        },
+        "quick": {
+          "type": "boolean",
+          "description": "If a packet matches a rule which has the quick option set, this\nrule is considered the last matching rule, and evaluation of subse-\nquent rules is skipped.\n",
+          "default": false
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "_id": "NatRule:B360B80A-564D-4243-813B-1DC281AB910A",
-  "_type": "NatRule",
+  "_id": "RdrRule:B360B80A-564D-4243-813B-1DC281AB910A",
+  "_type": "RdrRule",
   "_rev": 0,
   "_name": "DNAT",
   "_description": "Simple DNAT Rule",

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "NatRule",
+  "description": "RdrRule",
   "allOf": [
     {
       "$ref": "file:///types/Rule.json#"
@@ -64,13 +64,7 @@
             ]
           }
         }
-      },
-      "required": [
-        "no",
-        "static_port",
-        "redirhosts",
-        "redirport"
-      ]
+      }
     }
   ]
 }

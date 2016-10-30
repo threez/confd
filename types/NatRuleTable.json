@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NatRuleTable",
+  "allOf": [
+    {
+      "$ref": "file:///types/RuleTable.json#"
+    },
+    {
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(NatRule|RdrRule)"
+          },
+          "relation": {
+            "type": "has_and_belongs_to_many",
+            "only": [
+              "NatRule",
+              "RdrRule"
+            ]
+          }
+        }
+      },
+      "required": [
+        "rules"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "_id": "NatRule:B360B80A-564D-4243-813B-1DC281AB910A",
-  "_type": "NatRule",
+  "_id": "RdrRule:B360B80A-564D-4243-813B-1DC281AB910A",
+  "_type": "RdrRule",
   "_rev": 0,
   "_name": "DNAT",
   "_description": "Simple DNAT Rule",
@@ -10,19 +10,16 @@
   "_created_by": "system",
   "_updated_at": "2016-08-30T15:30:16Z",
   "_updated_by": "system",
-  "no": true,
-  "static_port": true,
+  "false": true,
+  "static_port": 123,
   "redirhosts": [
     "NetIpv4Address:B360B80A-564D-4243-813B-1DC281AB910A"
   ],
   "redirport": "NetPort:B360B80A-564D-4243-813B-1DC281AB910A",
   "pass": true,
   "log": true,
-  "interfaces": [],
-  "inet": true,
-  "inet6": true,
   "pool_type": "random",
-  "source_hash": "SOME_RANDOM",
+  "source_hash": true,
   "sticky_address": true,
   "tag": "some-tag",
   "tagged": "some-other-tag",
@@ -42,8 +39,6 @@
     "NetIpv4Address:B360B80A-564D-4243-813B-1DC281AB910A"
   ],
   "any_destination": false,
-  "destination_ports": [
-    "NetPort:B360B80A-564D-4243-813B-1DC281AB910A"
-  ],
+  "destination_ports": "NetPort:B360B80A-564D-4243-813B-1DC281AB910A",
   "any_destination_port": false
 }

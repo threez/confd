@@ -3,7 +3,7 @@
   "description": "AntispoofRule",
   "allOf": [
     {
-      "$ref": "file:///types/BasicObject.json#"
+      "$ref": "file:///types/Rule.json#"
     },
     {
       "$ref": "file:///types/RuleWithLoggingOption.json#"

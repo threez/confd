@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "FilterRuleTable",
+  "allOf": [
+    {
+      "$ref": "file:///types/RuleTable.json#"
+    },
+    {
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(FilterRule|AntispoofRule|ScrubRule)"
+          },
+          "relation": {
+            "type": "has_and_belongs_to_many",
+            "only": [
+              "FilterRule",
+              "AntispoofRule",
+              "ScrubRule"
+            ]
+          }
+        }
+      },
+      "required": [
+        "rules"
+      ]
+    }
+  ]
+}

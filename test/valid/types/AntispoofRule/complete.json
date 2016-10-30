@@ -13,6 +13,7 @@
   "label": "ANTI_SPOOF_LAN",
   "quick": true,
   "inet": true,
+  "log": false,
   "inet6": true,
   "interfaces": [
     "NetInterface:C8D930DB-8D86-4C59-819D-04C34F39E7E3"

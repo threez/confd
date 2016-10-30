@@ -27,5 +27,10 @@
         "round-robin": "The round-robin option loops\tthrough\tthe redirection\taddress(es).\nWhen\tmore than one redirection address is specified,\tround-robin is\nthe only permitted pool type.\n"
       }
     }
-  }
+  },
+  "required": [
+    "pool_type",
+    "source_hash",
+    "sticky_address"
+  ]
 }

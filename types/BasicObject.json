@@ -32,6 +32,7 @@
     },
     "_created_by": {
       "type": "string",
+      "pattern": "^(User|system)",
       "relation": {
         "type": "belongs_to",
         "only": [
@@ -47,6 +48,7 @@
       "type": "string",
       "relation": {
         "type": "belongs_to",
+        "pattern": "^(User|system)",
         "only": [
           "User"
         ]

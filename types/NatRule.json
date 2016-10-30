@@ -3,6 +3,9 @@
   "description": "NatRule",
   "allOf": [
     {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
       "$ref": "file:///types/RuleWithInterfaceFilter.json#"
     },
     {
@@ -41,7 +44,8 @@
         "redirhosts": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(NetIpv4Address)"
           },
           "relation": {
             "type": "has_and_belongs_to_many",
@@ -52,6 +56,7 @@
         },
         "redirport": {
           "type": "string",
+          "pattern": "^(NetPort)",
           "relation": {
             "type": "belongs_to",
             "only": [

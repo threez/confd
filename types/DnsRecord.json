@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "DnsRecord",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(DnsZone)"
+          },
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "DnsZone"
+            ]
+          }
+        },
+        "destination": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(NetIpv4Address)"
+          },
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "NetIpv4Address"
+            ]
+          }
+        },
+        "ttl": {
+          "type": "integer",
+          "default": 3600
+        },
+        "type": {
+          "type": "string",
+          "default": "A",
+          "enum": [
+            "A",
+            "CNAME",
+            "TXT",
+            "PTR",
+            "NS",
+            "MX",
+            "SOA",
+            "SRV",
+            "AAA"
+          ]
+        },
+        "rdata": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone",
+        "destination",
+        "ttl",
+        "type",
+        "rdata"
+      ]
+    }
+  ]
+}

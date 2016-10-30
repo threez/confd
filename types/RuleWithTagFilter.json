@@ -7,5 +7,8 @@
       "type": "string",
       "description": "Match the traffic only if the passed tag matches"
     }
-  }
+  },
+  "required": [
+    "tagged"
+  ]
 }

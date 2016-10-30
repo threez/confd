@@ -18,6 +18,9 @@
   "redirport": "NetPort:B360B80A-564D-4243-813B-1DC281AB910A",
   "pass": true,
   "log": true,
+  "interfaces": [],
+  "inet": true,
+  "inet6": true,
   "pool_type": "random",
   "source_hash": "SOME_RANDOM",
   "sticky_address": true,
@@ -39,6 +42,8 @@
     "NetIpv4Address:B360B80A-564D-4243-813B-1DC281AB910A"
   ],
   "any_destination": false,
-  "destination_ports": "NetPort:B360B80A-564D-4243-813B-1DC281AB910A",
+  "destination_ports": [
+    "NetPort:B360B80A-564D-4243-813B-1DC281AB910A"
+  ],
   "any_destination_port": false
 }

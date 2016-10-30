@@ -8,5 +8,8 @@
       "description": "automatically create the firewall rule",
       "default": true
     }
-  }
+  },
+  "required": [
+    "pass"
+  ]
 }

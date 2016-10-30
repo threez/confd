@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "DhcpSubnet",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "net_ipv4": {
+          "type": "string",
+          "pattern": "^(NetIpv4Range)",
+          "description": "range for the subnet",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "NetIpv4Range"
+            ]
+          }
+        },
+        "routers": {
+          "type": "array",
+          "pattern": "^(NetIpv4Address)",
+          "items": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "has_and_belongs_to_many",
+            "only": [
+              "NetIpv4Address"
+            ]
+          }
+        },
+        "dns_servers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(NetIpv4Address)"
+          },
+          "relation": {
+            "type": "has_and_belongs_to_many",
+            "only": [
+              "NetIpv4Address"
+            ]
+          }
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(DnsZone)"
+          },
+          "relation": {
+            "type": "has_and_belongs_to_many",
+            "only": [
+              "DnsZone"
+            ]
+          }
+        },
+        "default_lease_time": {
+          "type": "integer",
+          "default": 600
+        },
+        "max_lease_time": {
+          "type": "integer",
+          "default": 7200
+        }
+      },
+      "required": [
+        "net_ipv4",
+        "routers",
+        "dns_servers",
+        "zones",
+        "default_lease_time",
+        "max_lease_time"
+      ]
+    }
+  ]
+}

@@ -3,6 +3,9 @@
   "description": "RuleWithLoggingOption",
   "allOf": [
     {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
       "$ref": "file:///types/RuleWithInterfaceFilter.json#"
     },
     {
@@ -27,8 +30,7 @@
           "type": "string",
           "enum": [
             "accept",
-            "reject",
-            "drop"
+            "reject"
           ]
         },
         "silently_drop": {
@@ -90,7 +92,20 @@
           "default": -1,
           "description": "A probability attribute can be attached to a rule, with a value set\nbetween 0 and 1, bounds not included.  In that case, the rule will\nbe honoured using the given probability value only.\n"
         }
-      }
+      },
+      "required": [
+        "action",
+        "silently_drop",
+        "direction",
+        "quick",
+        "group",
+        "user",
+        "tos",
+        "allow_opts",
+        "label",
+        "queue",
+        "probability"
+      ]
     }
   ]
 }

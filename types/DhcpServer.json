@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "DhcpServer",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(NetInterface)"
+          },
+          "relation": {
+            "type": "has_and_belongs_to_many",
+            "only": [
+              "NetInterface"
+            ]
+          }
+        }
+      },
+      "required": [
+        "interfaces"
+      ]
+    }
+  ]
+}

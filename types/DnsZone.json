@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "DnsZone",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "static",
+          "help": {
+            "deny": "Do  not  send an answer, drop the query.  If there is a match from local data, the query is answered.",
+            "refuse": "Send an error message reply, with rcode REFUSED.  If there is a match from local data, the query is answered.",
+            "static": "If  there  is a match from local data, the query is answered. Otherwise, the query is answered  with  nodata  or  nxdomain. For  a  negative  answer  a  SOA is included in the answer if present as local-data for the zone apex domain.",
+            "transparent": "If there is a match from local data, the query  is  answered. Otherwise  if  the  query  has a different name, the query is resolved normally.  If the query  is  for  a  name  given  in localdata  but  no  such  type of data is given in localdata, then a noerror nodata answer is returned.  If  no  local-zone is  given  local-data causes a transparent zone to be created by default.",
+            "typetransparent": "If there is a match from local data, the query  is  answered. If  the  query  is for a different name, or for the same name but for a different type, the  query  is  resolved  normally. So,  similar  to transparent but types that are not listed in local data are resolved normally, so if an A record is in the local  data  that  does  not  cause  a  nodata reply for AAAA queries.",
+            "redirect": "The query is answered from the local data for the zone  name. There  may  be  no  local  data  beneath the zone name.  This answers queries for the zone, and all subdomains of the  zone with the local data for the zone.  It can be used to redirect a domain to return a different  address  record  to  the  end user,    with   local-zone:   'example.com.'   redirect   and local-data: 'example.com. A 127.0.0.1' queries for  www.example.com and www.foo.example.com are redirected, so that users with web browsers  cannot  access  sites  with  suffix  example.com.",
+            "nodefault": "Used  to turn off default contents for AS112 zones. The other' types also turn off default contents for the zone. The 'node fault'  option  has  no other effect than turning off default contents for the given zone."
+          }
+        }
+      },
+      "required": [
+        "type"
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@
   "_created_by": "system",
   "_updated_at": "2016-08-30T15:30:16Z",
   "_updated_by": "system",
-  "action": "drop",
+  "action": "accept",
   "silently_drop": true,
   "direction": "in",
   "quick": false,
@@ -26,6 +26,9 @@
   "queue": [
     "some-queue"
   ],
+  "interfaces": [],
+  "inet": true,
+  "inet6": true,
   "probability": -1,
   "log": true,
   "tag": "some-tag",
@@ -46,6 +49,8 @@
     "NetIpv4Address:B360B80A-564D-4243-813B-1DC281AB910A"
   ],
   "any_destination": false,
-  "destination_ports": "NetPort:B360B80A-564D-4243-813B-1DC281AB910A",
+  "destination_ports": [
+    "NetPort:B360B80A-564D-4243-813B-1DC281AB910A"
+  ],
   "any_destination_port": false
 }

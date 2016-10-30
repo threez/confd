@@ -8,5 +8,8 @@
       "description": "enable logging (traffic will be send to log device)",
       "default": false
     }
-  }
+  },
+  "required": [
+    "log"
+  ]
 }

@@ -6,7 +6,8 @@
     "protocols": {
       "type": "array",
       "items": {
-        "type": "string"
+        "type": "string",
+        "pattern": "^(NetProtocol)"
       },
       "relation": {
         "type": "has_and_belongs_to_many",
@@ -23,7 +24,8 @@
     "sources": {
       "type": "array",
       "items": {
-        "type": "string"
+        "type": "string",
+        "pattern": "^(NetIpv4Address|NetIpv4BroadcastAddress|NetIpv4Network|NetGroup|NetDynamicGroup)"
       },
       "relation": {
         "type": "has_and_belongs_to_many",
@@ -41,6 +43,11 @@
       "default": false
     },
     "source_ports": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(NetPort)"
+      },
       "relation": {
         "type": "has_and_belongs_to_many",
         "only": [
@@ -55,7 +62,8 @@
     "destinations": {
       "type": "array",
       "items": {
-        "type": "string"
+        "type": "string",
+        "pattern": "^(NetIpv4Address|NetIpv4BroadcastAddress|NetIpv4Network|NetGroup|NetDynamicGroup)"
       },
       "relation": {
         "type": "has_and_belongs_to_many",
@@ -73,6 +81,11 @@
       "default": false
     },
     "destination_ports": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(NetPort)"
+      },
       "relation": {
         "type": "has_and_belongs_to_many",
         "only": [
@@ -84,5 +97,17 @@
       "type": "boolean",
       "default": false
     }
-  }
+  },
+  "required": [
+    "protocols",
+    "all",
+    "sources",
+    "any_source",
+    "source_ports",
+    "any_source_port",
+    "destinations",
+    "any_destination",
+    "destination_ports",
+    "any_destination_port"
+  ]
 }

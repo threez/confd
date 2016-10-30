@@ -9,5 +9,9 @@
     "inet6": {
       "type": "boolean"
     }
-  }
+  },
+  "required": [
+    "inet",
+    "inet6"
+  ]
 }

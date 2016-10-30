@@ -6,6 +6,7 @@
       "$ref": "file:///types/RuleTable.json#"
     },
     {
+      "type": "object",
       "properties": {
         "rules": {
           "type": "array",

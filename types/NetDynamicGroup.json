@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NetDynamicGroup",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "interval": {
+          "type": "integer",
+          "description": "the interval to update the list with"
+        },
+        "source": {
+          "type": "string",
+          "description": "the url where to fetch the list from"
+        }
+      },
+      "required": [
+        "interval",
+        "source"
+      ]
+    }
+  ]
+}

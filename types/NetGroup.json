@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NetGroup",
+  "type": "object",
+  "properties": {
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(NetIpv4Address|NetIpv4BroadcastAddress|NetIpv4Network)"
+      },
+      "relation": {
+        "type": "has_and_belongs_to_many",
+        "only": [
+          "NetIpv4Address",
+          "NetIpv4BroadcastAddress",
+          "NetIpv4Network"
+        ]
+      }
+    }
+  },
+  "required": [
+    "members"
+  ]
+}

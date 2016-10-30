@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "User",
-  "type": "object",
+  "description": "NetProtocol",
   "allOf": [
     {
       "$ref": "file:///types/BasicObject.json#"
@@ -9,14 +8,14 @@
     {
       "type": "object",
       "properties": {
-        "_type": {
+        "expression": {
           "type": "string",
-          "default": "User",
-          "enum": [
-            "User"
-          ]
+          "description": "protocol expression as defined by pf.conf, defined in /etc/services"
         }
-      }
+      },
+      "required": [
+        "expression"
+      ]
     }
   ]
 }

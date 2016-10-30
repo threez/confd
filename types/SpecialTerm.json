@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "SpecialTerm",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "properties": {
+        "term": {
+          "type": "string"
+        },
+        "combine": {
+          "type": "string",
+          "default": "none",
+          "enum": [
+            "left",
+            "right",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "term",
+        "combine"
+      ]
+    }
+  ]
+}

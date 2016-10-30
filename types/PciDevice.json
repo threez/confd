@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "PciDevice",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "device": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "pci_class": {
+          "type": "string"
+        },
+        "pci_subclass": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "device",
+        "address",
+        "vendor",
+        "pci_class",
+        "pci_subclass"
+      ]
+    }
+  ]
+}

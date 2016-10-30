@@ -1,0 +1,18 @@
+{
+  "_id": "PciDevice:B360B80A-564D-4243-813B-1DC281AB910A",
+  "_type": "PciDevice",
+  "_rev": 0,
+  "_name": "NetProtocol",
+  "_description": "PciDevice",
+  "_enabled": true,
+  "_locked": false,
+  "_created_at": "2016-08-30T15:30:16Z",
+  "_created_by": "User:B360B80A-564D-4243-813B-1DC281AB910A",
+  "_updated_at": "2016-08-30T15:30:16Z",
+  "_updated_by": "User:B360B80A-564D-4243-813B-1DC281AB910A",
+  "device": "Ethernet Connection I354",
+  "address": "igb1@pci0:0:20:1:",
+  "vendor": "Intel Corporation",
+  "pci_class": "network",
+  "pci_subclass": "ethernet"
+}

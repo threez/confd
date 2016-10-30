@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "User",
-  "type": "object",
+  "description": "MacAddress",
   "allOf": [
     {
       "$ref": "file:///types/BasicObject.json#"
@@ -9,14 +8,14 @@
     {
       "type": "object",
       "properties": {
-        "_type": {
+        "address": {
           "type": "string",
-          "default": "User",
-          "enum": [
-            "User"
-          ]
+          "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
         }
-      }
+      },
+      "required": [
+        "address"
+      ]
     }
   ]
 }

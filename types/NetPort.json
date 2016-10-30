@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NetPort",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "integer",
+          "description": "protocol number as defined by IANA, defined in /etc/protocols"
+        }
+      },
+      "required": [
+        "number"
+      ]
+    }
+  ]
+}

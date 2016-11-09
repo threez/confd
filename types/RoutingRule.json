@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "RoutingRule",
+  "allOf": [
+    {
+      "$ref": "file:///types/Rule.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithInterfaceFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithAfFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithLoggingOption.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithTrafficSelector.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithTagFilter.json#"
+    },
+    {
+      "$ref": "file:///types/RuleWithPoolOption.json#"
+    },
+    {
+      "type": "object",
+      "required": [
+        "queue",
+        "rtable",
+        "fastroute",
+        "route",
+        "target"
+      ],
+      "properties": {
+        "queue": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rtable": {
+          "type": "integer"
+        },
+        "fastroute": {
+          "type": "boolean",
+          "default": false,
+          "description": "The fastroute option does a normal route lookup to find the next hop for the packet."
+        },
+        "route": {
+          "type": "string",
+          "default": "route-to",
+          "enum": [
+            "route-to",
+            "reply-to",
+            "dup-to"
+          ],
+          "help": {
+            "route-to": "The route-to option routes the packet to the specified interface with an optional address for the next hop.  When a route-to rule creates state, only packets that pass in the same direction as the filter rule specifies will be routed in this way.  Packets passing in the opposite direction (replies) are not affected and are routed normally.",
+            "reply-to": "The reply-to option is similar to route-to, but routes packets that pass in the opposite direction (replies) to the specified interface.  Opposite direction is only defined in the context of a state entry, and reply-to is useful only in rules that create state.  It can be used on systems with multiple external connections to route all outgoing packets of a connection through the interface the incoming connection arrived through (symmetric routing enforcement).",
+            "dup-to": "The dup-to option creates a duplicate of the packet and routes it like route-to.  The original packet gets routed as it normally would."
+          }
+        },
+        "target": {
+          "type": "array",
+          "description": "list of routehosts",
+          "items": {
+            "type": "string",
+            "pattern": "^(NetIpv4Address)",
+            "relation": {
+              "type": "has_and_belongs_to_many",
+              "only": [
+                "NetIpv4Address"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

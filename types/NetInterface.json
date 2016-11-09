@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NetInterface",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "stacked_on": {
+          "type": "string",
+          "pattern": "^(PciDevice|NetInterface)",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "PciDevice",
+              "NetInterface"
+            ]
+          }
+        },
+        "net_ipv4": {
+          "type": "string",
+          "pattern": "^(NetIpv4)",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "NetIpv4"
+            ]
+          }
+        },
+        "dhcp_client": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(DhcpClient)",
+              "relation": {
+                "type": "belongs_to",
+                "only": [
+                  "DhcpClient"
+                ]
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mac_address": {
+          "type": "string",
+          "pattern": "^(MacAddress)",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "MacAddress"
+            ]
+          }
+        },
+        "ip_aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(NetIpv4Address)",
+            "relation": {
+              "type": "has_and_belongs_to_many",
+              "only": [
+                "NetIpv4Address"
+              ]
+            }
+          }
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "capabinities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "nd6_options": {
+          "type": "array",
+          "description": "neighbor discovery IPv6",
+          "items": {
+            "type": "string"
+          }
+        },
+        "media": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean",
+          "default": false
+        },
+        "supported_media": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "stacked_on",
+        "net_ipv4",
+        "dhcp_client",
+        "mac_address",
+        "ip_aliases",
+        "flags",
+        "options",
+        "capabinities",
+        "nd6_options",
+        "media",
+        "supported_media"
+      ]
+    }
+  ]
+}

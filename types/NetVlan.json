@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NetVlan",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "$ref": "file:///types/NetInterface.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "vlan": {
+          "type": "integer",
+          "default": 0,
+          "TODO_minimum": 1,
+          "TODO_maximum": 4094
+        }
+      },
+      "required": [
+        "vlan"
+      ]
+    }
+  ]
+}

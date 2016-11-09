@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "NetIpv4",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "pattern": "^(NetIpv4Address)",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "NetIpv4Address"
+            ]
+          }
+        },
+        "broadcast_address": {
+          "type": "string",
+          "pattern": "^(NetIpv4BroadcastAddress)",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "NetIpv4BroadcastAddress"
+            ]
+          }
+        },
+        "network": {
+          "type": "string",
+          "pattern": "^(NetIpv4Network)",
+          "relation": {
+            "type": "belongs_to",
+            "only": [
+              "NetIpv4Network"
+            ]
+          }
+        }
+      },
+      "required": [
+        "address",
+        "broadcast_address",
+        "network"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "DhcpClient",
+  "allOf": [
+    {
+      "$ref": "file:///types/BasicObject.json#"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "client_identifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "client_identifier"
+      ]
+    }
+  ]
+}

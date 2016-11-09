@@ -9,12 +9,13 @@
       "type": "object",
       "properties": {
         "address": {
-          "type": "string"
+          "type": "string",
+          "format": "ipv4"
         }
       },
       "required": [
         "address"
-      ]  
+      ]
     }
   ]
 }
